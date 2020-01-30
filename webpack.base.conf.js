@@ -1,18 +1,26 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const PATHS = {
+  src: path.join(__dirname, "./src"),
+  dist: path.join(__dirname, "./dist"),
+  assets: "assets/"
+};
+
 module.exports = {
+  externals: {
+    paths: PATHS
+  },
   entry: {
-    app: "./src/index.js"
+    app: PATHS.src
   },
   output: {
-    filename: "[name].js",
-    path: path.resolve(__dirname, "./dist"),
-    publicPath: "/dist"
+    filename: `${PATHS.assets}js/[name].js`,
+    path: PATHS.dist,
+    publicPath: "/"
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.js$/,
         loader: "babel-loader",
         exclude: "/node_modules/"
@@ -32,7 +40,9 @@ module.exports = {
             loader: "postcss-loader",
             options: {
               sourceMap: true,
-              config: { path: "src/js/postcss.config.js" }
+              config: {
+                path: "src/js/postcss.config.js"
+              }
             }
           }
         ]
@@ -52,7 +62,9 @@ module.exports = {
             loader: "postcss-loader",
             options: {
               sourceMap: true,
-              config: { path: "src/js/postcss.config.js" }
+              config: {
+                path: "src/js/postcss.config.js"
+              }
             }
           },
           {
@@ -65,12 +77,9 @@ module.exports = {
       }
     ]
   },
-  devServer: {
-    overlay: true
-  },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css"
+      filename: `${PATHS.assets}css/[name].css`
     })
   ]
 };
