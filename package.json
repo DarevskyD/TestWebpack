@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --open --config webpack.dev.conf.js",
-    "watch": "webpack --watch",
     "build": "webpack --config webpack.build.conf.js"
   },
   "browserslist": [
