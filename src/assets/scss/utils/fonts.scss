@@ -21,8 +21,12 @@
             url('/assets/fonts/Helvetica/Base/Helvetica-Base.woff') format('woff'), // Pretty Modern Browsers
             url('/assets/fonts/Helvetica/Base/Helvetica-Base.ttf')  format('truetype'), // Safari, Android, iOS
             url('/assets/fonts/Helvetica/Base/Helvetica-Base.svg') format('svg'); // Legacy iOS
-     }
-   */
+     } */
+
+@font-face {
+  font-family: "HelvetiaVerbundene-24wo";
+  src: url("/assets/fonts/helvetia-verbundene-font/HelvetiaVerbundene-24wo.ttf");
+}
 
 // 2. Example with mixin (example):
 // NOTE: do NOT use expansion (.woff, .svg etc) for path! Path will be '/assets/fonts/OpenSans/opensans';
