@@ -104,8 +104,7 @@ module.exports = {
       template: `${PAGES_DIR}/index.html`,
       filename: './index.html',
       inject: true
-    }),
-    new HtmlWebpackPlugin({
+    }), new HtmlWebpackPlugin({
       template: `${PAGES_DIR}/about.html`,
       filename: './about.html',
       inject: true
