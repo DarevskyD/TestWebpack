@@ -1,4 +1,5 @@
 const path = require("path");
+
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -9,7 +10,8 @@ const PATHS = {
   assets: "assets/"
 };
 //const PAGES_DIR = PATHS.src;
-//const PAGES_DIR = `${PATHS.src}/html`;
+const PAGES_DIR = `${PATHS.src}/html`;
+
 
 module.exports = {
   externals: {
@@ -99,9 +101,14 @@ module.exports = {
       filename: `${PATHS.assets}css/[name].css`
     }),
     new HtmlWebpackPlugin({
-      hash: false,
-      template: `${PATHS.src}/index.html`,
-      filename: './index.html'
+      template: `${PAGES_DIR}/index.html`,
+      filename: './index.html',
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      template: `${PAGES_DIR}/about.html`,
+      filename: './about.html',
+      inject: true
     }),
     new CopyWebpackPlugin([{
         from: `${PATHS.src}/${PATHS.assets}img`,
