@@ -9,13 +9,14 @@ $bgColor: rgb(17, 88, 41);
 $color: red;
 $blockWidth: 30%;
 $border: 4px solid black;
+$mrBottom: 20px;
 
 .block:not(.first) {
   background: $bgColor;
   border: $border;
   height: 200px;
   width: $blockWidth;
-  margin-bottom: 20px;
+  margin-bottom: $mrBottom;
 }
 
 .first {
@@ -23,6 +24,6 @@ $border: 4px solid black;
   border: $border;
   height: 100px;
   width: $blockWidth;
-  margin-bottom: 20px;
+  margin-bottom: $mrBottom;
 }
 
