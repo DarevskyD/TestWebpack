@@ -1,5 +1,6 @@
 .wrapper_example {
   display: flex;
+
   h1 {
     font-size: rem(20);
   }
@@ -19,6 +20,33 @@ $mrBottom: 20px;
   margin-bottom: $mrBottom;
 }
 
+#central_block {
+  padding: 20px;
+
+  ul {
+    list-style: none;
+    display: inline-block;
+
+    li {
+      float: left;
+      margin-right: 10px;
+
+      a {
+        color: crimson;
+      }
+
+    }
+
+    
+  }
+
+  a {
+    color: white;
+  }
+
+}
+
+
 .first {
   background: $bgColor;
   border: $border;
@@ -26,4 +54,3 @@ $mrBottom: 20px;
   width: $blockWidth;
   margin-bottom: $mrBottom;
 }
-
