@@ -1,5 +1,5 @@
 const path = require("path");
-
+const fs = require("fs");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -9,9 +9,12 @@ const PATHS = {
   dist: path.join(__dirname, "../dist"),
   assets: "assets/"
 };
+
 //const PAGES_DIR = PATHS.src;
 const PAGES_DIR = `${PATHS.src}/html`;
-
+const PAGES = fs
+  .readdirSync(PAGES_DIR)
+  .filter(fileName => fileName.endsWith(".html"));
 
 module.exports = {
   externals: {
@@ -30,18 +33,19 @@ module.exports = {
         test: /\.js$/,
         loader: "babel-loader",
         exclude: "/node_modules/"
-      }, {
+      },
+      {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         loader: "file-loader",
         options: {
-          name: '[name].[ext]'
+          name: "[name].[ext]"
         }
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
         loader: "file-loader",
         options: {
-          name: '[name].[ext]'
+          name: "[name].[ext]"
         }
       },
       {
@@ -100,27 +104,25 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: `${PATHS.assets}css/[name].css`
     }),
-    new HtmlWebpackPlugin({
-      template: `${PAGES_DIR}/index.html`,
-      filename: './index.html',
-      inject: true
-    }), new HtmlWebpackPlugin({
-      template: `${PAGES_DIR}/about.html`,
-      filename: './about.html',
-      inject: true
-    }),
     new CopyWebpackPlugin([{
         from: `${PATHS.src}/${PATHS.assets}img`,
         to: `${PATHS.assets}img`
-      }, {
+      },
+      {
         from: `${PATHS.src}/${PATHS.assets}fonts`,
         to: `${PATHS.assets}fonts`
       },
       {
         from: `${PATHS.src}/static`,
-        to: ''
+        to: ""
       }
-    ])
-
+    ]),
+    ...PAGES.map(
+      page =>
+      new HtmlWebpackPlugin({
+        template: `${PAGES_DIR}/${page}`,
+        filename: `./${page}`
+      })
+    )
   ]
 };
