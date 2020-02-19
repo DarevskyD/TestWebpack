@@ -26,7 +26,7 @@ module.exports = {
   output: {
     filename: `${PATHS.assets}js/[name].js`,
     path: PATHS.dist,
-    publicPath: "/"
+    publicPath: ""
   },
   module: {
     rules: [{
@@ -114,7 +114,7 @@ module.exports = {
       },
       {
         from: `${PATHS.src}/static`,
-        to: ""
+        to: `static`
       }
     ]),
     ...PAGES.map(
