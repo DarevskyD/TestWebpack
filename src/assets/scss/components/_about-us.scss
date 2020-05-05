@@ -1,0 +1,10 @@
+  
+.about-us__title {
+    text-align: center;
+    padding: 51px 0 69px;
+    margin: 0;
+
+    @include media-tablet {
+        padding: 51px 0 39px;
+    }
+}
